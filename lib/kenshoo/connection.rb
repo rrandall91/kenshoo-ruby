@@ -45,6 +45,8 @@ module Kenshoo
         request.basic_auth(Kenshoo.options[:username], Kenshoo.options[:password])
         response = request.get(url)
         return JSON.parse(response.body)
+      rescue
+        return response
       end
     end
   end
