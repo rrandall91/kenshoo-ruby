@@ -28,7 +28,7 @@ module Kenshoo
 
     def self.status(run_token)
       response = get(build_url({ resource: 'reports', member: 'runs', identifier: run_token, method: 'status' }))
-      Kenshoo::ConnectionError.raise_error(response['errorMessage']) if response.key?('errorCode')
+      Kenshoo::ConnectionError.raise_error(response['errorMessage']) if response.try(:key?, 'errorCode')
       status = response['status']
       return status
     end
